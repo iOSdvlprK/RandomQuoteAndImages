@@ -37,10 +37,10 @@ class Webservice {
         async let (imageData, _) = URLSession.shared.data(from: url)
         async let (randomQuoteData, _) = URLSession.shared.data(from: randomQuoteUrl)
         
-        guard let quote = try? JSONDecoder().decode(Quote.self, from: try await randomQuoteData) else {
+        guard let quotes = try? JSONDecoder().decode([Quote].self, from: try await randomQuoteData) else {
             throw NetworkError.decodingError
         }
         
-        return RandomImage(image: try await imageData, quote: quote)
+        return RandomImage(image: try await imageData, quote: quotes[0])
     }
 }
