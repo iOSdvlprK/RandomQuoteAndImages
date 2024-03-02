@@ -29,7 +29,9 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
-                        
+                        Task {
+                            await randomImageListVM.getRandomImages(ids: Array(100...120))
+                        }
                     }, label: {
                         Image(systemName: "arrow.clockwise.circle")
                     })

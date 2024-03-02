@@ -13,6 +13,7 @@ class RandomImageListViewModel: ObservableObject {
     
     func getRandomImages(ids: [Int]) async {
         let webservice = Webservice()
+        randomImages = []
         
         do {
             try await withThrowingTaskGroup(of: (Int, RandomImage).self) { group in
